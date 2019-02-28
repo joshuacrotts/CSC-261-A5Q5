@@ -41,8 +41,8 @@ _MainProc PROC
 				mov		ebx, 0				; Offset for ResultsArray (Strings for display)
 				mov		edx, 0				; Offset for array (actual dword data)
 				
-inputLoop:     			input	prompt1, buffer, 40			; read ASCII characters
-				atod    buffer					; convert to integer
+inputLoop:     			input		prompt1, buffer, 40		; read ASCII characters
+				atod   		buffer				; convert to integer
 
 cmp100:				cmp		eax, 100			; Checks to see if integer is greater than 100
 				jg		above100			; If so, jump to re-input that integer
