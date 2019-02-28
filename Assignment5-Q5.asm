@@ -41,13 +41,13 @@ _MainProc PROC
 				mov		ebx, 0				; Offset for ResultsArray (Strings for display)
 				mov		edx, 0				; Offset for array (actual dword data)
 				
-inputLoop:     			input		prompt1, buffer, 40		; read ASCII characters
+	inputLoop:     		input		prompt1, buffer, 40		; read ASCII characters
 				atod   		buffer				; convert to integer
 
-cmp100:				cmp		eax, 100			; Checks to see if integer is greater than 100
+	cmp100:			cmp		eax, 100			; Checks to see if integer is greater than 100
 				jg		above100			; If so, jump to re-input that integer
 
-cmpNeg100:			cmp		eax, -100			; Checks to see if integer is less than -100
+	cmpNeg100:		cmp		eax, -100			; Checks to see if integer is less than -100
 				jl		belowNeg100			; If so, jump to re-input a bigger integer
 				
 				add		esi, edx			; Adds offset to esi pointer
@@ -67,22 +67,22 @@ cmpNeg100:			cmp		eax, -100			; Checks to see if integer is less than -100
 										; where procedure is called
 				
 
-above100:			input		above100Label, buffer, 40	; Prompt the user that input > 100
+	above100:		input		above100Label, buffer, 40	; Prompt the user that input > 100
 				atod		buffer
 				jmp		cmp100				; Recompare the number to the proper range
 
-belowNeg100:			input		belowNeg100Label, buffer, 40	; Prompt the user that input < 100
+	belowNeg100:		input		belowNeg100Label, buffer, 40	; Prompt the user that input < 100
 				atod		buffer
 				jmp		cmp100
 
 				
-arithmetic:			sub		esi, 60				; Applies a -60 (4 bytes x 15 indices) offset on the esi 
+	arithmetic:		sub		esi, 60				; Applies a -60 (4 bytes x 15 indices) offset on the esi 
 										; pointer so we can return to the beginning index
 				mov		ecx, 15
 				mov		edx, 0				; Index counter
 				mov		ebx, 0				; String index counter
 
-functionLoop:	lea		esi, 		array				; Loads array into esi
+	functionLoop:		lea		esi, array			; Loads array into esi
 				add		esi, ebx			; Adds offset for array pointer
 				mov		eax, [esi]			; Grabs element at offset index
 				push		edx				; Adds current index to stack
@@ -129,13 +129,13 @@ positionalMath PROC
 				je		odd				; Jump if odd
 				jl		evenF				; Jump if even b.c. 0 - 1 = -1
 
-odd:				cdq		
+	odd:			cdq		
 				idiv		tmp				; Divides the buffer by edx (index + 1)
 				jmp		continue
 
-evenF:				imul		eax, edx			; Multiplies the buffer by edx (index + 1)
+	evenF:			imul		eax, edx			; Multiplies the buffer by edx (index + 1)
 				
-continue:			pop		edx				; Pops the original edx, ecx and base pointer 
+	continue:		pop		edx				; Pops the original edx, ecx and base pointer 
 				pop		ecx				; parameters off the stack
 				pop		ebp
 				ret
